@@ -10,13 +10,13 @@ var parseJSON = function(json) {
   
 if (json === undefined || typeof json === 'function') {
     return 'SyntaxError';
-} if (json === 'true'){
+} else if (json === 'true'){
     return true;
-} if (json === 'false'){
+} else if (json === 'false'){
     return false;
-} if (json === 'null'){
+} else if (json === 'null'){
     return null;
-} if (typeof json === 'string' && json[0] === '[' && json[json.length-1] === ']'){
+} else if (typeof json === 'string' && json[0] === '[' && json[json.length-1] === ']'){
     if (json.length === 2) {
       return [];
     } else {
@@ -30,14 +30,16 @@ if (json === undefined || typeof json === 'function') {
       console.log(array)
     //[""one"", ""two""]
         for (var i = 0; i < array.length; i++) {
-              result.push(parseJSON(array[i]))
+          result.push(parseJSON(array[i]))
         };
       return result;
     } 
+} else if (json.match(/\d/g)){
+    return Number(json);
 } else if (typeof json === 'string') {
-      return json.slice(1,json.length-1)
-    }
-}    
+      return json.slice(1,json.length-1);
+  }
+}  
 
 
 
