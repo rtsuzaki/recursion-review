@@ -8,26 +8,36 @@ var parseJSON = function(json) {
   // if the input is an string in a Array sintax; return an array;
   //if the input is an string in a Obj model; return into an obj;
   
-  
 if (json === undefined || typeof json === 'function') {
     return 'SyntaxError';
-}
-var result = [];
-if (typeof json === Boolean){
-  return json;
+} if (json === 'true'){
+    return true;
+} if (json === 'false'){
+    return false;
+} if (json === 'null'){
+    return null;
 } if (typeof json === 'string' && json[0] === '[' && json[json.length-1] === ']'){
-//'["one", "two"]'
-  var slice1 = json.slice(1, json.indexOf(']'));
-//"one", "two"
-  var array = slice1.split(', ')
-//[""one"", " "two""]
-    for (var i = 0; i < array.length; i++) {
-          result.push(parseJSON(array[i]))};
-  return result;
+    if (json.length === 2) {
+      return [];
+    } else {
+      var result = [];
+    //'["one", "two"]'
+      var noSpaces = json.split(' ').join('')
+    //'["one","two"]'
+      console.log(noSpaces)
+      var slice1 = noSpaces.slice(1, noSpaces.indexOf(']'));
+      var array = slice1.split(',')
+      console.log(array)
+    //[""one"", ""two""]
+        for (var i = 0; i < array.length; i++) {
+              result.push(parseJSON(array[i]))
+        };
+      return result;
+    } 
 } else if (typeof json === 'string') {
-  return json.slice(1,json.length-1)
-  }
-}
+      return json.slice(1,json.length-1)
+    }
+}    
 
 
 
