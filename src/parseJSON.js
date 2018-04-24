@@ -46,7 +46,10 @@ if (json === undefined || typeof json === 'function') {
        console.log(noSpaces);
        var noBraces = noSpaces.slice(1,noSpaces.length-1);
        console.log(noBraces);
-      //["{"a":"b"", ""c":"d"}"]
+      //"a":"b","c":"d"
+       var keyValPairs = noBraces.split(',');
+       console.log(keyValPairs);
+      //[""a":"b"", ""c":"d""]
        var key = noSpaces.slice(2, noSpaces.indexOf(':')-1);
        var val = noSpaces.slice(noSpaces.indexOf(':') + 2, noSpaces.length-2);
        var result = {};
